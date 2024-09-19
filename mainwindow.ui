@@ -19,7 +19,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>381</width>
+      <width>401</width>
       <height>1031</height>
      </rect>
     </property>
@@ -31,7 +31,7 @@
       <rect>
        <x>10</x>
        <y>350</y>
-       <width>361</width>
+       <width>381</width>
        <height>621</height>
       </rect>
      </property>
@@ -84,15 +84,15 @@
       <rect>
        <x>10</x>
        <y>50</y>
-       <width>261</width>
+       <width>281</width>
        <height>31</height>
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="searchPatient">
+    <widget class="QPushButton" name="searchButton">
      <property name="geometry">
       <rect>
-       <x>280</x>
+       <x>300</x>
        <y>50</y>
        <width>89</width>
        <height>31</height>
@@ -119,9 +119,9 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>410</x>
       <y>10</y>
-      <width>1511</width>
+      <width>1491</width>
       <height>1021</height>
      </rect>
     </property>
