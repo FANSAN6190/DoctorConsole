@@ -1,5 +1,6 @@
 {
     "files": [
+        "authdialog.ui",
         "main.py",
         "mainwindow.ui"
     ]

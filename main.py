@@ -1,8 +1,53 @@
 # This Python file uses the following encoding: utf-8
 import sys
-from PySide6.QtWidgets import QApplication, QMessageBox, QPushButton, QStackedWidget, QMainWindow, QLineEdit, QLabel
+from PySide6.QtWidgets import QApplication, QMessageBox, QPushButton, QStackedWidget, QMainWindow, QLineEdit, QLabel, QDialog
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import Qt, QFile
+
+class AuthWindow(QDialog):
+    def __init__(self, ui_file_path):
+        super().__init__()
+        self.ui_file_path = ui_file_path
+        self.load_ui()
+        self.setup_ui()
+
+    def load_ui(self):
+        ui_file = QFile(self.ui_file_path)
+        if not ui_file.open(QFile.ReadOnly):
+            raise IOError(f"Cannot open {self.ui_file_path}: {ui_file.errorString()}")
+        loader = QUiLoader()
+        self.window = loader.load(ui_file, self)
+        ui_file.close()
+        if self.window is None:
+            raise RuntimeError(f"Failed to load UI file: {self.ui_file_path}")
+
+    def setup_ui(self):
+        pass
+        # # Find the input fields and buttons
+        self.username_input = self.window.findChild(QLineEdit, "phone_no")
+        self.password_input = self.window.findChild(QLineEdit, "password")
+        self.login_button = self.window.findChild(QPushButton, "login")
+        self.register_button = self.window.findChild(QPushButton, "regist")
+
+    def login(self):
+        username = self.username_input.text()
+        password = self.password_input.text()
+        if self.authenticate(username, password):
+            self.accept()
+        else:
+            QMessageBox.warning(self, "Login Failed", "Invalid username or password")
+
+    def register(self):
+        username = self.username_input.text()
+        password = self.password_input.text()
+        # Implement registration logic here
+        QMessageBox.information(self, "Register", "Registration successful")
+
+    def authenticate(self, username, password):
+        # Implement authentication logic here
+        # For simplicity, using a hardcoded username and password
+        return username == "user" and password == "pass"
+
 
 class MainWindow(QMainWindow):
     def __init__(self, ui_file_path):
@@ -68,8 +113,13 @@ def main():
     app = QApplication(sys.argv)
 
     try:
-        MainWindow("mainwindow.ui")
-        sys.exit(app.exec())
+        auth_window = AuthWindow("authdialog.ui")
+        auth_window.setWindowTitle("Login")
+        if auth_window.exec() == QDialog.Accepted:
+            MainWindow("mainwindow.ui")
+            sys.exit(app.exec())
+        else:
+            sys.exit(0)
 
     except Exception as e:
         QMessageBox.critical(None, "Error", str(e))
