@@ -20,20 +20,24 @@ class AuthWindow(QDialog):
         ui_file.close()
         if self.window is None:
             raise RuntimeError(f"Failed to load UI file: {self.ui_file_path}")
+        print("AuthWindow UI loaded successfully")
 
     def setup_ui(self):
-        pass
-        # # Find the input fields and buttons
+        # Find the input fields and buttons
         self.username_input = self.window.findChild(QLineEdit, "phone_no")
         self.password_input = self.window.findChild(QLineEdit, "password")
         self.login_button = self.window.findChild(QPushButton, "login")
         self.register_button = self.window.findChild(QPushButton, "regist")
 
+        # Connect buttons to their respective functions
+        self.login_button.clicked.connect(self.login)
+        self.register_button.clicked.connect(self.register)
+
     def login(self):
         username = self.username_input.text()
         password = self.password_input.text()
         if self.authenticate(username, password):
-            self.accept()
+            self.window.accept()
         else:
             QMessageBox.warning(self, "Login Failed", "Invalid username or password")
 
@@ -42,6 +46,7 @@ class AuthWindow(QDialog):
         password = self.password_input.text()
         # Implement registration logic here
         QMessageBox.information(self, "Register", "Registration successful")
+        print(username, password)
 
     def authenticate(self, username, password):
         # Implement authentication logic here
@@ -74,6 +79,7 @@ class MainWindow(QMainWindow):
 
         if self.window is None:
             raise RuntimeError(f"Failed to load UI file: {self.ui_file_path}")
+        print("Main Window UI loaded successfully")
 
     def setup_ui(self):
         # Find the QStackedWidget
@@ -95,8 +101,6 @@ class MainWindow(QMainWindow):
         # Connect the search button to the search function
         self.search_button.clicked.connect(self.search_patient)
 
-        self.window.show()
-
     def search_patient(self):
         email = self.email_input.text()
         patient_details = self.fetch_patient_details(email)
@@ -115,10 +119,13 @@ def main():
     try:
         auth_window = AuthWindow("authdialog.ui")
         auth_window.setWindowTitle("Login")
-        if auth_window.exec() == QDialog.Accepted:
-            MainWindow("mainwindow.ui")
+        if auth_window.window.exec() == QDialog.Accepted:
+            print("Login successful")
+            main_window = MainWindow("mainwindow.ui")
+            main_window.window.show()
             sys.exit(app.exec())
         else:
+            print("Login failed")
             sys.exit(0)
 
     except Exception as e:
