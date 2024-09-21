@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background:rgb(225, 245, 254);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QWidget" name="verticalWidget" native="true">
     <property name="geometry">
@@ -24,7 +27,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">border-right: 2px solid black;</string>
+     <string notr="true">border-right: 2px solid black; background:rgb(207, 212, 233);</string>
     </property>
     <widget class="QGroupBox" name="patientDetails">
      <property name="geometry">
@@ -34,6 +37,9 @@
        <width>381</width>
        <height>621</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background:rgb(222, 221, 218);</string>
      </property>
      <property name="title">
       <string>Patient Details</string>
@@ -50,8 +56,11 @@
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QLabel" name="textDetails">
+          <property name="styleSheet">
+           <string notr="true">border-right:none;</string>
+          </property>
           <property name="text">
-           <string>Name:</string>
+           <string/>
           </property>
          </widget>
         </item>
@@ -111,6 +120,9 @@
        <height>21</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">border-right:none;</string>
+     </property>
      <property name="text">
       <string>Search Patient by Email ID</string>
      </property>
@@ -124,6 +136,9 @@
       <width>1491</width>
       <height>1021</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="currentIndex">
      <number>0</number>
@@ -143,9 +158,12 @@
         <rect>
          <x>560</x>
          <y>30</y>
-         <width>111</width>
+         <width>201</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 700 20pt &quot;Ubuntu&quot;;</string>
        </property>
        <property name="text">
         <string>Medical History</string>
@@ -168,9 +186,12 @@
         <rect>
          <x>560</x>
          <y>30</y>
-         <width>111</width>
+         <width>221</width>
          <height>31</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 700 20pt &quot;Ubuntu&quot;;</string>
        </property>
        <property name="text">
         <string>New Priscription</string>
@@ -188,6 +209,9 @@
      <width>1920</width>
      <height>22</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgb(157, 158, 168);</string>
    </property>
    <widget class="QMenu" name="menuHome">
     <property name="title">
